@@ -112,11 +112,14 @@ a proxy endpoint as nodejs(if you are using typescript/javascript) example below
 
 ```sh
 
-const MERCHANT_ID = <YOUR MERCHANT ID HERE>;
 
-example MERCHANT_ID= "64b5f2fd-d97f-4797-91d7-d63fb2b5ed9c";
-
-BASE_URL = "https://orokii-ppg-gateway-api-730399970440.us-central1.run.app/api/v1"
+// Replace with your credentials
+const UNIQUE_ID = <GENERATE YOUR UNIQUE ID>;
+const CLIENT_ID = "";
+const CLIENT_SECRET = "";
+const MERCHANT_ID = "";
+const AUTH_HEADER = "Basic " + Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString("base64");
+const BASE_URL = "https://orokii-ppg-gateway-api-730399970440.us-central1.run.app/api/v1"
 
 // Replace with your merchant_id
 app.post("/get-token", async (req, res) => {
