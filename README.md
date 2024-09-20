@@ -45,5 +45,5 @@ Below is an example code on how you can use Renderer2 and ElememtRef to load the
   ```
 In your component html file you can then declare the `#widget-container` div anywhere in your UI
 ```html
- <div id="widget-container"  *ngIf="isCheckoutVisible"></div>
+ <div id="widget-container"></div>
  ```
