@@ -16,7 +16,7 @@ This guide will walk you through how to dynamically load the Orokiipay widget sc
 First, create a standalone component that will handle the display and loading of the Orokiipay widget.
 
 Import Renderer2 and ElementRef from Angular modules
-```shell
+```ts
 import { Component, OnInit, AfterViewInit, ElementRef, Renderer2 } from '@angular/core';
 ```
 Declare a toplevel boolean to check if the widget is loaded successfully
@@ -24,7 +24,7 @@ Declare a toplevel boolean to check if the widget is loaded successfully
  private scriptLoaded: boolean = false;
  ```
 Next inject it into your UI component constructor 
-```shell
+```ts
 constructor(private renderer: Renderer2, private el: ElementRef) {}
 ```
 Below is an example code on how you can use Renderer2 and ElememtRef to load the widget script 
