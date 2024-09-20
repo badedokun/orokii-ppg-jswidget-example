@@ -1,0 +1,131 @@
+.page {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+}
+
+.cart-summary {
+  width: 60%;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  border-right: 1px solid #ddd;
+}
+
+
+.checkout-right {
+  width: 40%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: normal;
+}
+
+.cart-items {
+  margin-bottom: 20px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.cart-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin-right: 15px;
+  border-radius: 4px;
+}
+
+.item-details {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.quantity {
+  font-weight: bold;
+  margin-right: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  min-width: 30px;
+}
+
+.name {
+  flex-grow: 1;
+  font-size: small;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: 300;
+  color: #3A4348;
+}
+
+.price {
+  font-weight: bold;
+}
+
+.discount-input {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.discount-input input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+}
+
+.discount-input button {
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.summary-details {
+  margin-bottom: 20px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.discount {
+  color: #e67e22;
+}
+
+.discount small {
+  color: #888;
+  margin-left: 5px;
+}
+
+.total {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.checkout-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #4285f4;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1em;
+  cursor: pointer;
+}
