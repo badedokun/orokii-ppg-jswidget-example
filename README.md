@@ -27,6 +27,60 @@ Next inject it into your UI component constructor
 ```ts
 constructor(private renderer: Renderer2, private el: ElementRef) {}
 ```
+
+Payload structure 
+
+1. Example For multiple merchants and a user with saved payment option
+```json
+{
+    "totalAmount": 600,
+    "merchants": [
+      { "merchantId": 87766786, "amount": 100, "tax": 2 },
+      { "merchantId": 87766786, "amount": 150, "tax": 12 },
+      { "merchantId": 87766786, "amount": 350, "tax": 15 },
+                ],
+      "userACHToken": { "userTokenId": "c3e453aa-c917-4ca0-ad0d-8a3d9492cc86", "userPaymentOptionId": "132005098", },
+      "userCardToken": { "userTokenId": "78f6c3cd-d05e-40e6-8f3f-274031cc5135", "userPaymentOptionId": "132047678", }
+ }
+```
+
+2. Example For multiple merchants and a user with no saved payment option
+```json
+{
+    "totalAmount": 600,
+    "merchants": [
+      { "merchantId": 87766786, "amount": 200, "tax": 5 },
+      { "merchantId": 12766786, "amount": 70, "tax": 5 },
+      { "merchantId": 87766786, "amount": 330, "tax": 5 },
+                ],
+      "userACHToken": null,
+      "userCardToken": null
+ }
+```
+
+3. Example For single merchant purchase and a user with no saved payment option
+```json
+{
+    "totalAmount": 100,
+    "merchants": [
+      { "merchantId": 87766786, "amount": 100, "tax": 5 }
+                ],
+      "userACHToken": null,
+      "userCardToken": null
+ }
+```
+4. Example For single merchant purchase and a user with saved card payment option
+```json
+{
+    "totalAmount": 600,
+    "merchants": [
+      { "merchantId": 87766786, "amount": 600, "tax": 5 }
+                ],
+      "userACHToken": null,
+      "userCardToken": { "userTokenId": "78f6c3cd-d05e-40e6-8f3f-274031cc5135", "userPaymentOptionId": "132047678", }
+ }
+```
+
 Below is an example code on how you can use Renderer2 and ElememtRef to load the widget script 
 
 ```ts
@@ -36,7 +90,7 @@ Below is an example code on how you can use Renderer2 and ElememtRef to load the
     script.async = true;
     script.onload = () => {
       const container = this.el.nativeElement.querySelector('#widget-container');
-      const widget = (window as any).OrokiipayWidget.createWidget(this.total.toString());
+      const widget = (window as any).OrokiipayWidget.createWidget(payload);
       container.appendChild(widget);
       this.scriptLoaded = true;
     };
@@ -47,3 +101,38 @@ In your component html file you can then declare the `#widget-container` div any
 ```html
  <div id="widget-container"></div>
  ```
+
+**Working with the cryptocurrency payment method**
+To get started you need to ensure you have metamask extension added to your browser plugin
+
+1. Visit the Chrome Web Store and search for MetaMask or use this direct [link](https://chromewebstore.google.com/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn)
+2. Click "Add to Chrome"
+3. Click "Add Extension"
+4. Pin the extension to your browser for easy access
+
+  - Click the puzzle piece icon in your browser
+  - Find MetaMask
+  - Click the pin icon
+
+
+
+### Creating Your Wallet
+
+1. Click the MetaMask icon in your browser
+2. Click "Get Started"
+3. Choose between importing an existing wallet or creating a new one
+  - For new wallet:
+
+    1. Create a strong password (minimum 8 characters)
+    2. Accept the terms of use
+    3. Click "Create"
+
+
+
+### Viewing Account Details
+
+Account address: Located at the top of the wallet
+Balance: Displayed prominently in the main view
+Transaction history: Available in the "Activity" tab
+Get testnet tokens from [here](https://faucets.chain.link/polygon-amoy)
+

@@ -2,6 +2,15 @@ import React, { useEffect } from 'react';
 
 const App = () => {
   useEffect(() => {
+    fetch("https://backend-server-tvb6.onrender.com/api/users")
+    .then((r) => r.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+  
     // Create a script element
     const script = document.createElement('script');
 
