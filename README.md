@@ -136,3 +136,17 @@ Balance: Displayed prominently in the main view
 Transaction history: Available in the "Activity" tab
 Get testnet tokens from [here](https://faucets.chain.link/polygon-amoy)
 
+
+### Test Card
+"cardNumber": 4761344136141390
+"cardHolderName": Solomon Ayo
+"expirationMonth": 12
+"expirationYear": 25
+"CVV": 217
+
+
+### Test ACH Details
+"AccountNumber": 111111111
+"RoutingNumber": 999999992
+
+-Note  for billing you can use your own defined information
