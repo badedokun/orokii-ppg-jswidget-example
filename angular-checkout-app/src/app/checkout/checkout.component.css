@@ -6,7 +6,7 @@
 }
 
 .cart-summary {
-  width: 60%;
+  width: 40%;
   padding: 20px;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
@@ -16,7 +16,7 @@
 
 
 .checkout-right {
-  width: 40%;
+  width: 60%;
   padding: 20px;
   box-sizing: border-box;
 }

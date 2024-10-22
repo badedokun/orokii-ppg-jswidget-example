@@ -2,31 +2,31 @@ import React, { useEffect } from 'react';
 
 const App = () => {
   useEffect(() => {
-    fetch("https://backend-server-tvb6.onrender.com/api/users")
-    .then((r) => r.json())
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
+
   
     // Create a script element
     const script = document.createElement('script');
 
     // Set the script source to the remote-widgets.js file
-    script.src = 'https://orokiipay-js-widget.web.app/bundle.js';
+    script.src = 'https://ayoseun.github.io/k-pay/bundle.js';
     script.async = true;
 
     // Append the script to the document body
-    document.body.appendChild(script);
-
+   document.body.appendChild(script);
+    const paymentData = {
+      "totalAmount": "5000",
+      "merchants": [{ "merchantId": "87766786", "amount": "60", "tax": "5" },
+      { "merchantId": "87766786", "amount": "60", "tax": "5" },
+      { "merchantId": "87766786", "amount": "60", "tax": "5" },],
+      "userACHToken": { "userTokenId": "c3e453aa-c917-4ca0-ad0d-8a3d9492cc86", "userPaymentOptionId": "132005098", },
+      "userCardToken": { "userTokenId": "78f6c3cd-d05e-40e6-8f3f-274031cc5135", "userPaymentOptionId": "132047678", }
+  }
     // Initialize the widget after the script has loaded
     script.onload = () => {
       // Assuming the widget has a createWidget function
-      const container = document.getElementById('#widget-container');
+      const container = document.getElementById('widget-container');
       if (window.OrokiipayWidget) {
-        const widget = window.OrokiipayWidget.createWidget("500"); // Pass any required parameters
+        const widget = window.OrokiipayWidget.createWidget(paymentData); // Pass any required parameters
         container.appendChild(widget);
       } else {
         console.error('OrokiipayWidget is not defined.');
