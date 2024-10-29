@@ -33,7 +33,7 @@ Payload structure
 1. Example For multiple merchants and a user with saved payment option
 ```json
 {
-"ServiceKey":"Oro788675ds",
+    "ServiceKey":"Oro788675ds",
     "totalAmount": 600,
     "merchants": [
       { "merchantId": 87766786, "amount": 100, "tax": 2 },
@@ -48,7 +48,7 @@ Payload structure
 2. Example For multiple merchants and a user with no saved payment option
 ```json
 {
-"ServiceKey":"Oro788675ds",
+    "ServiceKey":"Oro788675ds",
     "totalAmount": 600,
     "merchants": [
       { "merchantId": 87766786, "amount": 200, "tax": 5 },
@@ -63,7 +63,7 @@ Payload structure
 3. Example For single merchant purchase and a user with no saved payment option
 ```json
 {
-"ServiceKey":"Oro788675ds",
+    "ServiceKey":"Oro788675ds",
     "totalAmount": 100,
     "merchants": [
       { "merchantId": 87766786, "amount": 100, "tax": 5 }
@@ -75,7 +75,7 @@ Payload structure
 4. Example For single merchant purchase and a user with saved card payment option
 ```json
 {
-"ServiceKey":"Oro788675ds",
+    "ServiceKey":"Oro788675ds",
     "totalAmount": 600,
     "merchants": [
       { "merchantId": 87766786, "amount": 600, "tax": 5 }
