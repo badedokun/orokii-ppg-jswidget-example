@@ -1,2 +1,0 @@
-!function(){"use strict";document.querySelectorAll(".dropdown-header").forEach((e=>{e.addEventListener("click",(function(){const e=this.parentElement;document.querySelectorAll(".dropdown").forEach((o=>{o!==e&&(o.classList.remove("open"),o.querySelector(".dropdown-checkbox").checked=!1)})),e.classList.toggle("open"),e.querySelector(".dropdown-checkbox").checked=e.classList.contains("open")}))}))}();
-//# sourceMappingURL=orokii.bundle.js.map
