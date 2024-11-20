@@ -1,6 +1,8 @@
 # orokii-ppg-jswidget-example
 A repo to show JS widgets examples for Vanilla (html,css and Js), React JS and Angular 
 
+## Importing the widget
+the widget url is ```ts https://orokiipay-js-widget.web.app/bundle.js``` and should be imported using the script tag
 
 ## Example guide for Angular
 
