@@ -1,6 +1,12 @@
 # orokii-ppg-jswidget-example
 A repo to show JS widgets examples for Vanilla (html,css and Js), React JS and Angular 
 
+## Importing the widget
+the widget url is 
+```ts 
+https://orokiipay-js-widget.web.app/bundle.js
+```
+and should be imported using the script tag
 
 ## Example guide for Angular
 
@@ -33,6 +39,7 @@ Payload structure
 1. Example For multiple merchants and a user with saved payment option
 ```json
 {
+    "ServiceKey":"Oro788675ds",
     "totalAmount": 600,
     "merchants": [
       { "merchantId": 87766786, "amount": 100, "tax": 2 },
@@ -47,6 +54,7 @@ Payload structure
 2. Example For multiple merchants and a user with no saved payment option
 ```json
 {
+    "ServiceKey":"Oro788675ds",
     "totalAmount": 600,
     "merchants": [
       { "merchantId": 87766786, "amount": 200, "tax": 5 },
@@ -61,6 +69,7 @@ Payload structure
 3. Example For single merchant purchase and a user with no saved payment option
 ```json
 {
+    "ServiceKey":"Oro788675ds",
     "totalAmount": 100,
     "merchants": [
       { "merchantId": 87766786, "amount": 100, "tax": 5 }
@@ -72,6 +81,7 @@ Payload structure
 4. Example For single merchant purchase and a user with saved card payment option
 ```json
 {
+    "ServiceKey":"Oro788675ds",
     "totalAmount": 600,
     "merchants": [
       { "merchantId": 87766786, "amount": 600, "tax": 5 }
@@ -143,6 +153,51 @@ Get testnet tokens from [here](https://faucets.chain.link/polygon-amoy)
 "expirationMonth": 12
 "expirationYear": 25
 "CVV": 217
+
+*cards*
+- Visa
+4761344136141390
+4761201381475297
+4159129252458086
+4123407439043051
+4001888687412469
+4444493318246892
+
+- Mastercard
+5101081046006034
+5101084411423750
+5333304500657872
+5333308664112277
+5550345228382224
+5550347471347813
+2222755234426838
+2221004483162815
+
+- American Express
+375510513169537
+375510288656924
+375510379996452
+375510082116984
+
+- Discover
+6509821665351005
+6221267465440274
+6500217278165735
+6522231777286524
+6523077546008353
+6011494585241663
+
+- Diner
+361253433727425
+386009540225286
+369116638070887
+386000330170758
+364096288088485
+365650577650527
+
+- China Union Pay
+6221272566426206
+6233050545583578
 
 
 ### Test ACH Details
