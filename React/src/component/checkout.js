@@ -58,7 +58,7 @@ const CheckoutModal = ({ isOpen, onClose, totalAmount }) => {
 
     if (isOpen) {
       scriptElement = document.createElement('script');
-      scriptElement.src = 'https://ayoseun.github.io/k-pay/bundle.js';
+      scriptElement.src = '/bundle.js';
       scriptElement.async = true;
 
       scriptElement.onload = initializeWidget;
@@ -91,11 +91,11 @@ const CheckoutModal = ({ isOpen, onClose, totalAmount }) => {
         aria-hidden="true"
         onClick={onClose}
       />
-      <div className=" fixed inset-0 z-50 flex items-center justify-center">
+      <div className="  fixed inset-0 z-50 flex items-center justify-center">
         <div 
           role="dialog"
           aria-modal="true"
-          className="relative bg-white rounded-lg w-full max-w-[950px] mx-4 max-h-[90vh] flex flex-col shadow-xl"
+          className="relative bg-white rounded-lg w-full max-w-[950px] max-h-[90vh] flex flex-col shadow-xl"
           onClick={e => e.stopPropagation()}
         >
           <div className="flex items-center justify-between p-4 border-b border-gray-200">
@@ -123,9 +123,9 @@ const CheckoutModal = ({ isOpen, onClose, totalAmount }) => {
             )}
 
             <div
-              ref={containerRef}
+             
               id="widget-container"
-              className=" min-h-[500px]"
+              className=" my-4"
             />
           </div>
         </div>
