@@ -180,9 +180,7 @@ const App = () => {
                 <p className="text-xl mb-8">
                   Discover amazing products at unbeatable prices
                 </p>
-                <button className="bg-[#E27F03] text-black hover:bg-gray-100 px-6 py-3 rounded-lg font-semibold transition-colors">
-                  Shop Now
-                </button>
+               
               </div>
             </div>
           </div>

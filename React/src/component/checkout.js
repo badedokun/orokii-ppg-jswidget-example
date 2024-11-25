@@ -33,7 +33,7 @@ const CheckoutModal = ({ isOpen, onClose, totalAmount }) => {
       if (window.OrokiipayWidget && containerRef.current) {
         try {
           const paymentData = {
-            "totalAmount": totalAmount,
+            "totalAmount": parseFloat(totalAmount).toFixed(2),
             "merchants": [{ "merchantId": "87766786", "amount": "60", "tax": "5" },
             { "merchantId": "87766786", "amount": "60", "tax": "5" },
             { "merchantId": "87766786", "amount": "60", "tax": "5" },],
@@ -58,7 +58,7 @@ const CheckoutModal = ({ isOpen, onClose, totalAmount }) => {
 
     if (isOpen) {
       scriptElement = document.createElement('script');
-      scriptElement.src = '/bundle.js';
+      scriptElement.src = 'https://ayoseun.github.io/k-pay/bundle.js';
       scriptElement.async = true;
 
       scriptElement.onload = initializeWidget;
@@ -91,7 +91,7 @@ const CheckoutModal = ({ isOpen, onClose, totalAmount }) => {
         aria-hidden="true"
         onClick={onClose}
       />
-      <div className="  fixed inset-0 z-50 flex items-center justify-center">
+      <div className=" fixed inset-0 z-50 flex items-center justify-center">
         <div 
           role="dialog"
           aria-modal="true"
@@ -123,9 +123,9 @@ const CheckoutModal = ({ isOpen, onClose, totalAmount }) => {
             )}
 
             <div
-             
+              ref={containerRef}
               id="widget-container"
-              className=" my-4"
+              className="my-6"
             />
           </div>
         </div>
