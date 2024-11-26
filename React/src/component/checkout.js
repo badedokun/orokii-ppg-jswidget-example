@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
-
+export function cleanNumber(input) {
+  // Convert to a number first to handle scientific notation or floating point issues
+  const num = Number(input);
+  
+  // Use toFixed() to round to 2 decimal places, then convert back to a number 
+  // to remove unnecessary trailing zeros
+  return Number(num.toFixed(2)).toString();
+}
 const CheckoutModal = ({ isOpen, onClose, totalAmount }) => {
   const containerRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -33,12 +40,12 @@ const CheckoutModal = ({ isOpen, onClose, totalAmount }) => {
       if (window.OrokiipayWidget && containerRef.current) {
         try {
           const paymentData = {
-            "totalAmount": parseFloat(totalAmount).toFixed(2),
+            "totalAmount": cleanNumber(totalAmount),
             "merchants": [{ "merchantId": "87766786", "amount": "60", "tax": "5" },
             { "merchantId": "87766786", "amount": "60", "tax": "5" },
             { "merchantId": "87766786", "amount": "60", "tax": "5" },],
             "userACHToken": { "userTokenId": "c3e453aa-c917-4ca0-ad0d-8a3d9492cc86", "userPaymentOptionId": "132005098", },
-            "userCardToken": { "userTokenId": "78f6c3cd-d05e-40e6-8f3f-274031cc5135", "userPaymentOptionId": "132047678", }
+            //"userCardToken": { "userTokenId": "78f6c3cd-d05e-40e6-8f3f-274031cc5135", "userPaymentOptionId": "132047678", }
         }
 
           // Clear previous widget content
@@ -83,6 +90,21 @@ const CheckoutModal = ({ isOpen, onClose, totalAmount }) => {
   }, [isOpen, totalAmount]);
 
   if (!isOpen) return null;
+
+  function checkPaymentStatus() {
+    setInterval(() => {
+      try {
+        const status = localStorage.getItem("orokiiPayPaymentResult");
+        console.log('Current status:', status);
+      } catch (error) {
+        console.error('Error checking status:', error);
+      }
+    }, 3000);
+  }
+  
+  // Start checking status
+  checkPaymentStatus();
+
 
   return (
     <>
