@@ -60,8 +60,9 @@ const App = () => {
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
-
+  const [cartAdditionAlert, setCartAdditionAlert] = useState(null);
   const [showModal, setShowModal] = useState(false);
+
   const addToCart = (product) => {
     const existingItem = cart.find(item => item.id === product.id);
     if (existingItem) {
@@ -73,6 +74,12 @@ const App = () => {
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
     }
+
+    // Show cart addition alert
+    setCartAdditionAlert(product);
+    setTimeout(() => {
+      setCartAdditionAlert(null);
+    }, 3000);
   };
 
   const removeFromCart = (productId) => {
@@ -93,14 +100,6 @@ const App = () => {
     return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
   };
 
-  // const handleCheckout = () => {
-  //   setShowSuccessAlert(true);
-  //   setCart([]);
-  //   setTimeout(() => {
-  //     setShowSuccessAlert(false);
-  //     setShowCart(false);
-  //   }, 3000);
-  // };
   const handleCheckout = () => {
     setShowModal(true);
   };
@@ -114,7 +113,6 @@ const App = () => {
       setShowCart(false);
     }, 3000);
   };
-
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -152,7 +150,7 @@ const App = () => {
         </div>
       </nav>
 
-      {/* Success Alert */}
+      {/* Success Alert for Checkout */}
       {showSuccessAlert && (
         <div className="fixed top-4 right-4 w-96 bg-green-100 border border-green-200 rounded-lg p-4 z-50">
           <p className="text-green-800">
@@ -160,8 +158,30 @@ const App = () => {
           </p>
         </div>
       )}
-         {/* Add the CheckoutModal component */}
-         <CheckoutModal 
+
+      {/* Cart Addition Alert */}
+      {cartAdditionAlert && (
+        <div className="fixed top-4 right-4 w-96 bg-blue-100 border border-blue-200 rounded-lg p-4 z-50 animate-slide-in">
+          <div className="flex items-center">
+            <img
+              src={cartAdditionAlert.image}
+              alt={cartAdditionAlert.name}
+              className="w-12 h-12 mr-4 object-cover rounded"
+            />
+            <div>
+              <p className="text-blue-800 font-semibold">
+                {cartAdditionAlert.name} added to cart
+              </p>
+              <p className="text-blue-600 text-sm">
+                Quantity: 1
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Add the CheckoutModal component */}
+      <CheckoutModal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
         totalAmount={getTotalPrice()}
@@ -180,7 +200,7 @@ const App = () => {
                 <p className="text-xl mb-8">
                   Discover amazing products at unbeatable prices
                 </p>
-               
+
               </div>
             </div>
           </div>

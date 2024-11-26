@@ -12,7 +12,7 @@ const CheckoutModal = ({ isOpen, onClose, totalAmount }) => {
   const containerRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [widgetValue, setWidgetValue] = useState(null);
   useEffect(() => {
     // Save the original body style
     const originalStyle = window.getComputedStyle(document.body).overflow;
@@ -65,7 +65,7 @@ const CheckoutModal = ({ isOpen, onClose, totalAmount }) => {
 
     if (isOpen) {
       scriptElement = document.createElement('script');
-      scriptElement.src = 'https://ayoseun.github.io/k-pay/bundle.js';
+      scriptElement.src = '/bundle.js';
       scriptElement.async = true;
 
       scriptElement.onload = initializeWidget;
@@ -76,7 +76,12 @@ const CheckoutModal = ({ isOpen, onClose, totalAmount }) => {
 
       document.body.appendChild(scriptElement);
     }
+    const handleWidgetUpdate = (event) => {
+      setWidgetValue(event.detail.value);
+    };
 
+    window.addEventListener('orokii-widget-payment-status', handleWidgetUpdate);
+console.log(widgetValue)
     return () => {
       if (scriptElement && document.body.contains(scriptElement)) {
         document.body.removeChild(scriptElement);
@@ -86,24 +91,14 @@ const CheckoutModal = ({ isOpen, onClose, totalAmount }) => {
           containerRef.current.removeChild(containerRef.current.firstChild);
         }
       }
+      window.removeEventListener('orokii-widget-payment-status', handleWidgetUpdate);
     };
   }, [isOpen, totalAmount]);
 
   if (!isOpen) return null;
 
-  function checkPaymentStatus() {
-    setInterval(() => {
-      try {
-        const status = localStorage.getItem("orokiiPayPaymentResult");
-        console.log('Current status:', status);
-      } catch (error) {
-        console.error('Error checking status:', error);
-      }
-    }, 3000);
-  }
-  
-  // Start checking status
-  checkPaymentStatus();
+
+
 
 
   return (
