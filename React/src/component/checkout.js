@@ -3,12 +3,12 @@ import { X } from 'lucide-react';
 export function cleanNumber(input) {
   // Convert to a number first to handle scientific notation or floating point issues
   const num = Number(input);
-  
+
   // Use toFixed() to round to 2 decimal places, then convert back to a number 
   // to remove unnecessary trailing zeros
   return Number(num.toFixed(2)).toString();
 }
-const CheckoutModal = ({ isOpen, onClose, totalAmount }) => {
+const CheckoutModal = ({ isOpen, onClose, totalAmount, onComplete }) => {
   const containerRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -16,11 +16,11 @@ const CheckoutModal = ({ isOpen, onClose, totalAmount }) => {
   useEffect(() => {
     // Save the original body style
     const originalStyle = window.getComputedStyle(document.body).overflow;
-    
+
     if (isOpen) {
       // Get the scrollbar width
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-      
+
       // Apply padding to prevent content shift when scrollbar disappears
       document.body.style.overflow = 'hidden';
       document.body.style.paddingRight = `${scrollbarWidth}px`;
@@ -44,9 +44,9 @@ const CheckoutModal = ({ isOpen, onClose, totalAmount }) => {
             "merchants": [{ "merchantId": "87766786", "amount": "60", "tax": "5" },
             { "merchantId": "87766786", "amount": "60", "tax": "5" },
             { "merchantId": "87766786", "amount": "60", "tax": "5" },],
-            "userACHToken": { "userTokenId": "c3e453aa-c917-4ca0-ad0d-8a3d9492cc86", "userPaymentOptionId": "132005098", },
+            //"userACHToken": { "userTokenId": "c3e453aa-c917-4ca0-ad0d-8a3d9492cc86", "userPaymentOptionId": "132005098", },
             //"userCardToken": { "userTokenId": "78f6c3cd-d05e-40e6-8f3f-274031cc5135", "userPaymentOptionId": "132047678", }
-        }
+          }
 
           // Clear previous widget content
           while (containerRef.current.firstChild) {
@@ -76,12 +76,10 @@ const CheckoutModal = ({ isOpen, onClose, totalAmount }) => {
 
       document.body.appendChild(scriptElement);
     }
-    const handleWidgetUpdate = (event) => {
-      setWidgetValue(event.detail.value);
-    };
 
-    window.addEventListener('orokii-widget-payment-status', handleWidgetUpdate);
-console.log(widgetValue)
+
+
+
     return () => {
       if (scriptElement && document.body.contains(scriptElement)) {
         document.body.removeChild(scriptElement);
@@ -91,25 +89,32 @@ console.log(widgetValue)
           containerRef.current.removeChild(containerRef.current.firstChild);
         }
       }
-      window.removeEventListener('orokii-widget-payment-status', handleWidgetUpdate);
+
     };
   }, [isOpen, totalAmount]);
 
   if (!isOpen) return null;
-
-
+  const handleWidgetUpdate = (event) => {
+    setWidgetValue(event.detail.value);
+    console.log(widgetValue)
+    if (widgetValue && widgetValue === true) {
+      onClose();
+      onComplete()
+    }
+  };
+  window.addEventListener('orokii-widget-payment-status', handleWidgetUpdate);
 
 
 
   return (
     <>
-      <div 
+      <div
         className="fixed inset-0 bg-black/50 z-50"
         aria-hidden="true"
         onClick={onClose}
       />
       <div className=" fixed inset-0 z-50 flex items-center justify-center">
-        <div 
+        <div
           role="dialog"
           aria-modal="true"
           className="relative bg-white rounded-lg w-full max-w-[950px] max-h-[90vh] flex flex-col shadow-xl"

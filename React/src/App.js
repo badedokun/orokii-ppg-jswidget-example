@@ -108,10 +108,12 @@ const App = () => {
     setShowModal(false);
     setShowSuccessAlert(true);
     setCart([]); // Clear the cart
+    
+   // window.removeEventListener('orokii-widget-payment-status',setShowCart(!showCart));
     setTimeout(() => {
       setShowSuccessAlert(false);
       setShowCart(false);
-    }, 3000);
+    }, 300);
   };
 
   return (
