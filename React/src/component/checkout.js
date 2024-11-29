@@ -65,7 +65,7 @@ const CheckoutModal = ({ isOpen, onClose, totalAmount, onComplete }) => {
 
     if (isOpen) {
       scriptElement = document.createElement('script');
-      scriptElement.src = '/bundle.js';
+      scriptElement.src = 'https://ayoseun.github.io/k-pay/bundle.js';
       scriptElement.async = true;
 
       scriptElement.onload = initializeWidget;
