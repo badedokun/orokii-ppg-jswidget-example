@@ -36,11 +36,47 @@ constructor(private renderer: Renderer2, private el: ElementRef) {}
 
 Payload structure 
 
-1. Example For multiple merchants and a user with saved payment option
+
+
+1. Example For single merchant purchase and a user with no saved payment option
 ```json
 {
-    "ServiceKey":"Oro788675ds",
-    "totalAmount": 600,
+      "totalAmount": 500.00, // The amount to pay
+      "merchantId": "64b5f2fd-d97f-4797-91d7-d63fb2b5ed9c", //your orokii merchant id
+      "clientId": "4121062054", //your orokii client id
+      "shippingFee": 37.00, // you cam include shipping fee if available or set it to 0
+      "discount": 5.28, //you can set discount if applicable
+      "tax":5, // The tax amount is in percent
+      "merchants": [
+      ], //leave empty for simgle payment
+      "userACHToken":null, //This value is a users/customers saved ach credentials, pass it here if you want the user to skip entering routing number over and over
+      "userCardToken": null,//This value is a users/customers saved card credentials, pass it here if you want the user to skip entering card details number over and over
+    };
+```
+2. Example For single merchant purchase and a user with saved card payment option
+```json
+{
+      "totalAmount": 500.00, // The amount to pay
+      "merchantId": "64b5f2fd-d97f-4797-91d7-d63fb2b5ed9c", //your orokii merchant id
+      "clientId": "4121062054", //your orokii client id
+      "shippingFee": 37.00, // you cam include shipping fee if available or set it to 0
+      "discount": 5.28, //you can set discount if applicable
+      "tax":5, // The tax amount is in percent
+      "merchants": [
+      ], //leave empty for simgle payment
+      "userACHToken":  { "userTokenId": "c3e453aa-c917-4ca0-ad0d-8a3d9492cc86", "userPaymentOptionId": "132005098", },, //This value is a users/customers saved ach credentials, pass it here if you want the user to skip entering routing number over and over
+      "userCardToken":  { "userTokenId": "78f6c3cd-d05e-40e6-8f3f-274031cc5135", "userPaymentOptionId": "132047678", },//This value is a users/customers saved card credentials, pass it here if you want the user to skip entering card details number over and over
+    };
+```
+3. Example For multiple merchants and a user with saved payment option
+```json
+{
+  "totalAmount": 500.00, // The amount to pay
+      "merchantId": "64b5f2fd-d97f-4797-91d7-d63fb2b5ed9c", //your orokii merchant id
+      "clientId": "4121062054", //your orokii client id
+      "shippingFee": 37.00, // you cam include shipping fee if available or set it to 0
+      "discount": 5.28, //you can set discount if applicable
+      "tax":5, // The tax amount is in percent
     "merchants": [
       { "merchantId": 87766786, "amount": 100, "tax": 2 },
       { "merchantId": 87766786, "amount": 150, "tax": 12 },
@@ -51,11 +87,15 @@ Payload structure
  }
 ```
 
-2. Example For multiple merchants and a user with no saved payment option
+4. Example For multiple merchants and a user with no saved payment option
 ```json
 {
-    "ServiceKey":"Oro788675ds",
-    "totalAmount": 600,
+ "totalAmount": 500.00, // The amount to pay
+      "merchantId": "64b5f2fd-d97f-4797-91d7-d63fb2b5ed9c", //your orokii merchant id
+      "clientId": "4121062054", //your orokii client id
+      "shippingFee": 37.00, // you cam include shipping fee if available or set it to 0
+      "discount": 5.28, //you can set discount if applicable
+      "tax":5, // The tax amount is in percent
     "merchants": [
       { "merchantId": 87766786, "amount": 200, "tax": 5 },
       { "merchantId": 12766786, "amount": 70, "tax": 5 },
@@ -66,41 +106,73 @@ Payload structure
  }
 ```
 
-3. Example For single merchant purchase and a user with no saved payment option
-```json
-{
-    "ServiceKey":"Oro788675ds",
-    "totalAmount": 100,
-    "merchants": [
-      { "merchantId": 87766786, "amount": 100, "tax": 5 }
-                ],
-      "userACHToken": null,
-      "userCardToken": null
- }
-```
-4. Example For single merchant purchase and a user with saved card payment option
-```json
-{
-    "ServiceKey":"Oro788675ds",
-    "totalAmount": 600,
-    "merchants": [
-      { "merchantId": 87766786, "amount": 600, "tax": 5 }
-                ],
-      "userACHToken": null,
-      "userCardToken": { "userTokenId": "78f6c3cd-d05e-40e6-8f3f-274031cc5135", "userPaymentOptionId": "132047678", }
- }
+- Backend setup
+You would need to call the get-access-token merchant endpoint from your backend and relay it through
+a proxy endpoint as nodejs(if you are using typescript/javascript) example below
+```sh
+// Replace with your credentials
+const CLIENT_ID = <YOUR CLIENT ID HERE>;
+const CLIENT_SECRET = <YOUR SECRET HERE>;
+const MERCHANT_ID = <YOUR MERCHANT ID HERE>;
+const UNIQUE_ID=<RANDOMLY GENERATED ID HERE>
+const AUTH_HEADER = "Basic " + Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString("base64");
+
+app.post("/proxy", async (req, res) => {
+    const url = `${BASE_URL}/auth/${MERCHANT_ID}/get-access-token`;
+
+    try {
+        const response = await axios.post(
+            url,
+            { uniqueId: UNIQUE_ID }, 
+            {
+                headers: {
+                    Authorization: AUTH_HEADER,
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            }
+        );
+
+        res.status(response.status).json(response.data);
+    } catch (error) {
+        console.error("Error:", error.message);
+        res.status(error.response?.status || 500).json({
+            error: "Internal Server Error",
+            details: error.response?.data || error.message,
+        });
+    }
+});
 ```
 
+Now call the /token function from your endpoints in your frontend code and call the api call function
+```ts
+export async function getOrokiiAccessToken() {
+  try {
+    const response = await fetch("https://orokii-js-test-proxy.onrender.com/proxy");
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log(result.data.accessToken);
+    return result.data.accessToken; // Return access token reponse
+  } catch (error) {
+    console.error("Error fetching access token:", error);
+    return null; // Handle failure gracefully
+  }
+}
+
+```
 Below is an example code on how you can use Renderer2 and ElememtRef to load the widget script 
 
 ```ts
   private loadWidgetScript(): void {
     const script = this.renderer.createElement('script');
-    script.src = 'https://orokiipay-js-widget.web.app/bundle.js'; 
+    script.src = './bundle.js'; 
     script.async = true;
     script.onload = () => {
       const container = this.el.nativeElement.querySelector('#widget-container');
-      const widget = (window as any).OrokiipayWidget.createWidget(payload);
+      const widget = (window as any).OrokiipayWidget.createWidget(payload,getOrokiiAccessToken);
       container.appendChild(widget);
       this.scriptLoaded = true;
     };
@@ -204,4 +276,37 @@ Get testnet tokens from [here](https://faucets.chain.link/polygon-amoy)
 "AccountNumber": 111111111
 "RoutingNumber": 999999992
 
--Note  for billing you can use your own defined information
+
+- Note  for billing use 
+  city- Boston,
+  state : MASSECHUTE,
+  country : "UNITED STATE
+
+
+#### Response
+the event has the following structure
+```json 
+{
+  type: string,
+  error: string,
+  data: string|object|number
+  message: string
+}```
+
+- Error 
+
+The widget returns error responses that can be captured to provide user feedbacks or modified user feedbacks, the error can be captured by accessing the type 
+
+1. 'card-payment-error': this error type is for all card processing errors the specific message can be seen 
+in the error and message field
+2.'crypto-payment-error': this error type is for all crypto processing errors the specific message can be seen 
+in the error and message field
+3. 'ach-payment-error': this error type is for all card processing errors the specific message can be seen 
+in the error and message field
+4. 'widget-initialize-error':this error type is for all widget setup errors the specific message can be seen 
+in the error and message field.
+
+- Success
+ 1. 'card-payment-success'
+ 2. 'ach-payment-success'
+ 3. 'crypto-payment-success'

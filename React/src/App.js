@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ShoppingCart, X, Plus, Minus, Search, ChevronLeftCircle, Facebook, Twitter, Instagram, Mail, Phone, MapPin } from 'lucide-react';
 import { Footer } from './component/footer';
 import CheckoutModal from './component/checkout';
+import Alert from './component/alert';
 
 const products = [
   {
@@ -152,14 +153,15 @@ const App = () => {
         </div>
       </nav>
 
+    
       {/* Success Alert for Checkout */}
-      {showSuccessAlert && (
-        <div className="fixed top-4 right-4 w-96 bg-green-100 border border-green-200 rounded-lg p-4 z-50">
-          <p className="text-green-800">
-            Order placed successfully! Thank you for shopping with us.
-          </p>
-        </div>
-      )}
+      <Alert
+        show={showSuccessAlert}
+        type="success"
+        message="Order placed successfully! Thank you for shopping with us."
+        duration={3000}
+        onClose={() => setShowSuccessAlert(false)}
+      />
 
       {/* Cart Addition Alert */}
       {cartAdditionAlert && (
