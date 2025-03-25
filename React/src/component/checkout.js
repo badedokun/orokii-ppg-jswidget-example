@@ -66,7 +66,7 @@ const CheckoutModal = ({ isOpen, onClose, totalAmount, onComplete }) => {
         { "merchantId": "87766786", "amount": "60", "tax": "5" },
       ],
       "userACHToken": { "userTokenId": "c3e453aa-c917-4ca0-ad0d-8a3d9492cc86", "userPaymentOptionId": "132005098" },
-      "userCardToken": { "userTokenId": "78f6c3cd-d05e-40e6-8f3f-274031cc5135", "userPaymentOptionId": "132047678" }
+      //"userCardToken": { "userTokenId": "78f6c3cd-d05e-40e6-8f3f-274031cc5135", "userPaymentOptionId": "132047678" }
     };
 
     // Create a script element
