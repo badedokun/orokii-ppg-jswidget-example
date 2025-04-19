@@ -1,0 +1,87 @@
+get:
+  summary: Get article by ID
+  parameters:
+    - name: articleId
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: lang
+      in: query
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          example:
+            id: "123"
+            title: "Sample Title"
+            lang: "en"
+  security:
+    - bearerAuth: []
+
+put:
+  summary: Replace article
+  parameters:
+    - name: articleId
+      in: path
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        example:
+          title: "Updated Title"
+          content: "Updated Content"
+  responses:
+    '200':
+      description: Updated
+      content:
+        application/json:
+          example:
+            status: "updated"
+  security:
+    - bearerAuth: []
+
+patch:
+  summary: Partially update article
+  parameters:
+    - name: articleId
+      in: path
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        example:
+          title: "New Title"
+  responses:
+    '200':
+      description: Patched
+      content:
+        application/json:
+          example:
+            status: "patched"
+  security:
+    - bearerAuth: []
+
+delete:
+  summary: Delete article
+  parameters:
+    - name: articleId
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      description: Deleted
+  security:
+    - bearerAuth: []

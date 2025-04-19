@@ -1,0 +1,17 @@
+post:
+  summary: Get currency quotation
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components/schemas/terraPayCurrencyQuotation.yaml"
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          example:
+            id: "abc123",
+            message: "Quotation returned"
+             

@@ -1,0 +1,27 @@
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      txnDestination:
+        type: string
+        example: bank
+      bankAccountNumber:
+        type: string
+        example: 005305011929
+      amount:
+        type: string
+        example: 0.1
+      receivingCountry:
+        type: string
+        example: IN
+      receivingCurrency:
+        type: string
+        example: INR
+    required:
+      - txnDestination
+      - bankAccountNumber
+      - amount
+      - receivingCountry
+      - receivingCurrency
+

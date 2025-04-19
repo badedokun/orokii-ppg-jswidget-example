@@ -1,0 +1,13 @@
+post:
+  summary: Create article
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "./components/schemas/article.yaml"
+  responses:
+    '201':
+      description: Created
+  security:
+    - bearerAuth: []

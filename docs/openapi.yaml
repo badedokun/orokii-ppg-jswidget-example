@@ -1,0 +1,27 @@
+openapi: 3.0.0
+info:
+  title: Modularized API
+  version: 1.0.0
+
+servers:
+  - url: https://api.example.com/v1
+
+paths:
+  /terraPayCurrencyQutation: 
+    $ref: "./paths/terraPayCurrencyQutation.yaml"
+  /articles: 
+    $ref: "./paths/articles.yaml"
+  /users:
+    $ref: "./paths/users.yaml"
+
+components:
+  securitySchemes:
+    $ref: "../components/securitySchemes.yaml"
+    
+  schemas:
+    TerraPayCurrencyQutation:
+      $ref: "./components/schemas/terraPayCurrencyQuotation.yaml"
+    # Article:
+    #   $ref: "../components/schemas/Article.yaml"
+    # User:
+    #   $ref: "../components/schemas/User.yaml"
