@@ -14,338 +14,7 @@
         "/terraPayGetAccountStatus": {
       "post": {
         "summary": "Get Account Status",
-        "description": "Returns currency quotation.",
-       
-"requestBody": {
-  "required": true,
-  "content": {
-    "application/json": {
-      "schema": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "object",
-            "properties": {
-              "txnDestination": {
-                "type": "string",
-                "example": "bank"
-              },
-              "bankAccountNumber": {
-                "type": "string",
-                "example": "005305011929"
-              },
-              "bankName": {
-                "type": "string",
-                "example": "CAIXABANK, S.A."
-              },
-              "receivingCountry": {
-                "type": "string",
-                "example": "EE"
-              },
-              "sortcode": {
-                "type": "string",
-                "example": ""
-              },
-               "beneficiaryName": {
-                "type": "string",
-                "example": "BABILONIA BOTEFLOR S.L"
-              }
-            },
-            "required": [
-              "txnDestination",
-              "bankAccountNumber",
-              "bankName",
-              "receivingCountry",
-              "sortcode",
-               "beneficiaryName"
-            ]
-          }
-        }
-      }
-    }
-  }
-}
-
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "example": {
-                  "id": "abc123",
-                  "message": "Quotation returned"
-                }
-              }
-            }
-          }
-        },
-        
-      }
-    },
-    "/terraPayCurrencyQuotation": {
-      "post": {
-        "summary": "Get Currency quotation",
-        "description": "Returns currency quotation.",
-       
-"requestBody": {
-  "required": true,
-  "content": {
-    "application/json": {
-      "schema": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "object",
-            "properties": {
-              "txnDestination": {
-                "type": "string",
-                "example": "bank"
-              },
-              "bankAccountNumber": {
-                "type": "string",
-                "example": "005305011929"
-              },
-              "amount": {
-                "type": "string",
-                "example": "0.1"
-              },
-              "receivingCountry": {
-                "type": "string",
-                "example": "IN"
-              },
-              "receivingCurrency": {
-                "type": "string",
-                "example": "INR"
-              }
-            },
-            "required": [
-              "txnDestination",
-              "bankAccountNumber",
-              "amount",
-              "receivingCountry",
-              "receivingCurrency"
-            ]
-          }
-        }
-      }
-    }
-  }
-}
-
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "example": {
-                  "id": "abc123",
-                  "message": "Quotation returned"
-                }
-              }
-            }
-          }
-        },
-        
-      }
-    },
-    "/basicGet": {
-      "get": {
-        "summary": "Basic GET request",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "example": {
-                  "message": "Hello from basic GET"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/getWithQuery": {
-      "get": {
-        "summary": "GET with query",
-        "parameters": [
-          {
-            "name": "country",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Query received",
-            "content": {
-              "application/json": {
-                "example": {
-                  "country": "Nigeria",
-                  "message": "Query received"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/getWithParam/{id}": {
-      "get": {
-        "summary": "GET with path param",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Resource found",
-            "content": {
-              "application/json": {
-                "example": {
-                  "id": "123",
-                  "message": "Resource found"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/updateResource/{id}": {
-      "put": {
-        "summary": "PUT to update resource",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": { "type": "string" }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": { "type": "string" },
-                  "status": { "type": "string" }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Resource updated"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/patchResource/{id}": {
-      "patch": {
-        "summary": "PATCH to modify resource",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": { "type": "string" }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "status": { "type": "string" }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Resource patched"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/deleteResource/{id}": {
-      "delete": {
-        "summary": "DELETE resource",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": { "type": "string" }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Resource deleted"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/securePost": {
-      "post": {
-        "summary": "POST with Bearer and X-API-Key",
-        "description": "A secure POST endpoint.",
-        "parameters": [
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Returns account status.",
         "requestBody": {
           "required": true,
           "content": {
@@ -354,32 +23,331 @@
                 "type": "object",
                 "properties": {
                   "data": {
-                    "type": "string"
+                    "type": "object",
+                    "properties": {
+                      "txnDestination": {
+                        "type": "string",
+                        "example": "bank"
+                      },
+                      "bankAccountNumber": {
+                        "type": "string",
+                        "example": "005305011929"
+                      },
+                      "bankName": {
+                        "type": "string",
+                        "example": "CAIXABANK, S.A."
+                      },
+                      "receivingCountry": {
+                        "type": "string",
+                        "example": "EE"
+                      },
+                      "sortcode": {
+                        "type": "string",
+                        "example": ""
+                      },
+                      "beneficiaryName": {
+                        "type": "string",
+                        "example": "BABILONIA BOTEFLOR S.L"
+                      }
+                    },
+                    "required": [
+                      "txnDestination",
+                      "bankAccountNumber",
+                      "bankName",
+                      "receivingCountry",
+                      "sortcode",
+                      "beneficiaryName"
+                    ]
                   }
-                },
-                "required": ["data"]
+                }
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Secure data received",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "example": {
-                  "status": "success",
-                  "message": "Secure data processed"
+                  "id": "abc123",
+                  "message": "Quotation returned"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/terraPayCurrencyQuotation": {
+      "post": {
+        "summary": "Get Currency Quotation",
+        "description": "Returns currency quotation.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "txnDestination": {
+                        "type": "string",
+                        "example": "bank"
+                      },
+                      "bankAccountNumber": {
+                        "type": "string",
+                        "example": "005305011929"
+                      },
+                      "amount": {
+                        "type": "string",
+                        "example": "0.1"
+                      },
+                      "receivingCountry": {
+                        "type": "string",
+                        "example": "IN"
+                      },
+                      "receivingCurrency": {
+                        "type": "string",
+                        "example": "INR"
+                      }
+                    },
+                    "required": [
+                      "txnDestination",
+                      "bankAccountNumber",
+                      "amount",
+                      "receivingCountry",
+                      "receivingCurrency"
+                    ]
+                  }
                 }
               }
             }
           }
         },
-        "security": [
-          {
-            "bearerAuth": []
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "abc123",
+                  "message": "Quotation returned"
+                }
+              }
+            }
           }
-        ]
+        }
+      }
+    },
+    "/terraPayRemitForBusiness": {
+      "post": {
+        "summary": "Pay Remit For Business",
+        "description": "Submit a business remittance transaction to TerraPay.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "quoteId": { "type": "string", "example": "QR037HBCZFLUFKUA0" },
+                      "type": { "type": "string", "example": "b2b" },
+                      "userId": { "type": "string", "example": "uuid-here" },
+                      "txnDestination": { "type": "string", "example": "bank" },
+                      "beneficiaryName": { "type": "string", "example": "TERRAPAY SOLUTIONS INDIA PRIVATE LIMITED" },
+                      "bankAccountNumber": { "type": "string", "example": "005305011929" },
+                      "paymentMode": { "type": "string", "example": "cash" },
+                      "paymentOption": { "type": "string", "example": "Account Credit" },
+                      "bankName": { "type": "string", "example": "ICICI Bank Ltd" },
+                      "amount": { "type": "string", "example": "0.1" },
+                      "receivingCountry": { "type": "string", "example": "IN" },
+                      "receivingAmount": { "type": "string", "example": "8.2" },
+                      "receivingCurrency": { "type": "string", "example": "INR" },
+                      "msisdn": { "type": "string", "example": "+17322014611" },
+                      "sortcode": { "type": "string", "example": "ICIC0000053" },
+                      "recipientMsisdn": { "type": "string", "example": "+9113800001111" },
+                      "relationshipSender": { "type": "string", "example": "Brother" },
+                      "sourceOfFunds": { "type": "string", "example": "Savings" },
+                      "remittancePurpose": { "type": "string", "example": "Business profits to Parents" },
+                      "descriptionText": { "type": "string", "example": "Testing Orokii, Inc B2B integration on TerraPay" },
+                      "senderBusinessName": { "type": "string", "example": "Orokii, Inc" },
+                      "senderBusinessAddress1": { "type": "string", "example": "56 Wellington Road, East Brunswick, NJ 08816" },
+                      "senderBusinessPrimaryContactCountryCode": { "type": "string", "example": "US" },
+                      "senderBusinessPrimaryContactNo": { "type": "string", "example": "+17322014611" },
+                      "senderBusinessEmail": { "type": "string", "example": "hello@orokii.com" },
+                      "senderBusinessCountryCode": { "type": "string", "example": "US" },
+                      "senderBusinessRegistrationType": { "type": "string", "example": "Private Limited Company" },
+                      "senderBusinessRegistrationNumber": { "type": "string", "example": "23123456789" },
+                      "senderBusinessRegistrationIssueDate": { "type": "string", "example": "2022/09/26" },
+                      "senderBusinessIDValidThru": { "type": "string", "example": "2033/09/26" },
+                      "recipientBusinessName": { "type": "string", "example": "TERRAPAY SOLUTIONS INDIA PRIVATE LIMITED" },
+                      "recipientBusinessAddressCountryCode": { "type": "string", "example": "IN" }
+                    },
+                    "required": [
+                      "quoteId",
+                      "type",
+                      "userId",
+                      "txnDestination",
+                      "beneficiaryName",
+                      "bankAccountNumber",
+                      "paymentMode",
+                      "paymentOption",
+                      "bankName",
+                      "amount",
+                      "receivingCountry",
+                      "receivingAmount",
+                      "receivingCurrency",
+                      "msisdn",
+                      "sortcode",
+                      "recipientMsisdn",
+                      "relationshipSender",
+                      "sourceOfFunds",
+                      "remittancePurpose",
+                      "descriptionText",
+                      "senderBusinessName",
+                      "senderBusinessAddress1",
+                      "senderBusinessPrimaryContactCountryCode",
+                      "senderBusinessPrimaryContactNo",
+                      "senderBusinessEmail",
+                      "senderBusinessCountryCode",
+                      "senderBusinessRegistrationType",
+                      "senderBusinessRegistrationNumber",
+                      "senderBusinessRegistrationIssueDate",
+                      "senderBusinessIDValidThru",
+                      "recipientBusinessName",
+                      "recipientBusinessAddressCountryCode"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+       "responses": {
+  "200": {
+    "description": "Successful remittance response",
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "type": "object",
+              "properties": {
+                "amount": { "type": "string", "example": "8.18" },
+                "currency": { "type": "string", "example": "INR" },
+                "type": { "type": "string", "example": "b2b" },
+                "requestDate": { "type": "string", "example": "2023-04-25 9:32:57" },
+                "requestingOrganisationTransactionReference": { "type": "string", "example": "OROKII-TXN-40682478222424" },
+                "debitParty": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "key": { "type": "string", "example": "msisdn" },
+                      "value": { "type": "string", "example": "+17322014611" }
+                    }
+                  }
+                },
+                "creditParty": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "key": { "type": "string", "example": "msisdn" },
+                      "value": { "type": "string", "example": "+9113800001111" }
+                    }
+                  }
+                },
+                "transactionStatus": { "type": "string", "example": "3050:Remit Acknowledged." },
+                "transactionReference": { "type": "string", "example": "TPOI000052574431" },
+                "requestData": {
+                  "type": "object",
+                  "properties": {
+                    "amount": { "type": "string", "example": "8.18" },
+                    "currency": { "type": "string", "example": "INR" },
+                    "type": { "type": "string", "example": "b2b" },
+                    "descriptionText": { "type": "string", "example": "Testing Orokii, Inc B2B integration on TerraPay" },
+                    "requestDate": { "type": "string", "example": "2023-04-25 9:32:57" },
+                    "requestingOrganisationTransactionReference": { "type": "string", "example": "OROKII-TXN-40682478222424" },
+                    "sendingAmount": { "type": "string", "example": "0.1" },
+                    "payinCcyCode": { "type": "string", "example": "USD" },
+                    "paymentMode": { "type": "string", "example": "cash" },
+                    "paymentOption": { "type": "string", "example": "Account Credit" },
+                    "debitParty": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "key": { "type": "string" },
+                          "value": { "type": "string" }
+                        }
+                      }
+                    },
+                    "creditParty": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "key": { "type": "string" },
+                          "value": { "type": "string" }
+                        }
+                      }
+                    },
+                    "internationalTransferInformation": {
+                      "type": "object",
+                      "properties": {
+                        "quoteId": { "type": "string", "example": "QR037IDCPGUAT2S62" },
+                        "receivingCountry": { "type": "string", "example": "IN" },
+                        "remittancePurpose": { "type": "string", "example": "Business profits to Parents" },
+                        "sourceOfFunds": { "type": "string", "example": "Savings" },
+                        "relationshipSender": { "type": "string", "example": "Brother" }
+                      }
+                    },
+                    "business": {
+                      "type": "object",
+                      "properties": {
+                        "senderKyc": {
+                          "type": "object",
+                          "properties": {
+                            "businessName": { "type": "string" },
+                            "businessAddress1": { "type": "string" },
+                            "businessPrimaryContactCountryCode": { "type": "string" },
+                            "businessPrimaryContactNo": { "type": "string" },
+                            "businessEmail": { "type": "string" },
+                            "businessCountryCode": { "type": "string" },
+                            "businessRegistrationType": { "type": "string" },
+                            "businessRegistrationNumber": { "type": "string" },
+                            "businessRegistrationIssueDate": { "type": "string" },
+                            "businessIDValidThru": { "type": "string" }
+                          }
+                        },
+                        "recipientKyc": {
+                          "type": "object",
+                          "properties": {
+                            "businessName": { "type": "string" },
+                            "businessAddressCountryCode": { "type": "string" }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
       }
     }
   },
@@ -393,4 +361,3 @@
     }
   }
 }
-
