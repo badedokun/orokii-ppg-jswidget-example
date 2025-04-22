@@ -109,13 +109,16 @@ Payload structure
 - Backend setup
 You would need to call the get-access-token merchant endpoint from your backend and relay it through
 a proxy endpoint as nodejs(if you are using typescript/javascript) example below
+
 ```sh
-// Replace with your credentials
+
 const MERCHANT_ID = <YOUR MERCHANT ID HERE>;
 
 example MERCHANT_ID= "64b5f2fd-d97f-4797-91d7-d63fb2b5ed9c";
-BASE_URL =" https://orokii-ppg-gateway-api-730399970440.us-central1.run.app/api/v1"
 
+BASE_URL = "https://orokii-ppg-gateway-api-730399970440.us-central1.run.app/api/v1"
+
+// Replace with your merchant_id
 app.post("/get-token", async (req, res) => {
     const url = `${BASE_URL}/auth/${MERCHANT_ID}/get-access-token`;
 
