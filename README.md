@@ -111,13 +111,12 @@ You would need to call the get-access-token merchant endpoint from your backend 
 a proxy endpoint as nodejs(if you are using typescript/javascript) example below
 ```sh
 // Replace with your credentials
-const CLIENT_ID = <YOUR CLIENT ID HERE>;
-const CLIENT_SECRET = <YOUR SECRET HERE>;
 const MERCHANT_ID = <YOUR MERCHANT ID HERE>;
-const UNIQUE_ID=<RANDOMLY GENERATED ID HERE>
-const AUTH_HEADER = "Basic " + Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString("base64");
 
-app.post("/proxy", async (req, res) => {
+example MERCHANT_ID= "64b5f2fd-d97f-4797-91d7-d63fb2b5ed9c";
+BASE_URL =" https://orokii-ppg-gateway-api-730399970440.us-central1.run.app/api/v1"
+
+app.post("/get-token", async (req, res) => {
     const url = `${BASE_URL}/auth/${MERCHANT_ID}/get-access-token`;
 
     try {
@@ -143,11 +142,11 @@ app.post("/proxy", async (req, res) => {
 });
 ```
 
-Now call the /token function from your endpoints in your frontend code and call the api call function
+Now call the /get-token function from your endpoints in your frontend code and call the api call function
 ```ts
 export async function getOrokiiAccessToken() {
   try {
-    const response = await fetch("https://orokii-js-test-proxy.onrender.com/proxy");
+    const response = await fetch(<YOUR_BACKEND_URL/get-token>);
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -162,7 +161,13 @@ export async function getOrokiiAccessToken() {
   }
 }
 
-```
+Or you can test with ours 
+```sh
+ https://orokii-js-test-proxy.onrender.com/proxy
+
+ ```
+
+
 Below is an example code on how you can use Renderer2 and ElememtRef to load the widget script 
 
 ```ts
