@@ -8,7 +8,7 @@ const products = [
   {
     id: 1,
     name: 'Wireless Earbuds',
-    price: 99.99,
+    price: 2.99,
     image: '/earbud.png',
     description: 'High-quality wireless earbuds with noise cancellation',
     category: 'Electronics'
@@ -16,7 +16,7 @@ const products = [
   {
     id: 2,
     name: 'Smart Watch',
-    price: 199.99,
+    price: 1.00,
     image: '/watch.png',
     description: 'Feature-rich smartwatch with health tracking',
     category: 'Wearables'
@@ -24,7 +24,7 @@ const products = [
   {
     id: 3,
     name: 'Laptop Backpack',
-    price: 49.99,
+    price: 4.81,
     image: '/bag.png',
     description: 'Durable laptop backpack with multiple compartments',
     category: 'Accessories'
@@ -32,7 +32,7 @@ const products = [
   {
     id: 4,
     name: 'Coffee Maker',
-    price: 79.99,
+    price: 7.99,
     image: '/coffee.png',
     description: 'Programmable coffee maker with thermal carafe',
     category: 'Home'
@@ -40,7 +40,7 @@ const products = [
   {
     id: 5,
     name: 'Bluetooth Speaker',
-    price: 129.99,
+    price: 0.99,
     image: '/speaker.png',
     description: 'Portable bluetooth speaker with deep bass',
     category: 'Electronics'
@@ -48,7 +48,7 @@ const products = [
   {
     id: 6,
     name: 'Desk Lamp',
-    price: 39.99,
+    price: 0.21,
     image: '/lamp.png',
     description: 'LED desk lamp with adjustable brightness',
     category: 'Home'

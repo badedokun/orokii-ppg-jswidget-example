@@ -1,0 +1,20 @@
+{
+  "hosting": {
+   "public": ".",
+     "site":"orokii-b2b-docs",
+    "ignore": [
+    "firebase.json",
+      ".firebaserc",
+      ".gitignore"
+    ],"rewrites": [
+      {
+        "source": "/",
+        "destination": "/api-docs.html"
+      },
+      {
+        "source": "**",
+        "destination": "/api-docs.html"
+      }
+    ]
+  }
+}

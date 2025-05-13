@@ -1,12 +1,7 @@
 # orokii-ppg-jswidget-example
 A repo to show JS widgets examples for Vanilla (html,css and Js), React JS and Angular 
 
-## Importing the widget
-the widget url is 
-```ts 
-https://orokiipay-js-widget.web.app/bundle.js
-```
-and should be imported using the script tag
+
 
 ## Example guide for Angular
 
@@ -42,8 +37,7 @@ Payload structure
 ```json
 {
       "totalAmount": 500.00, // The amount to pay
-      "merchantId": "64b5f2fd-d97f-4797-91d7-d63fb2b5ed9c", //your orokii merchant id
-      "clientId": "4121062054", //your orokii client id
+   "clientId": "4340025143689097409",//your orokii client id
       "shippingFee": 37.00, // you cam include shipping fee if available or set it to 0
       "discount": 5.28, //you can set discount if applicable
       "tax":5, // The tax amount is in percent
@@ -57,8 +51,7 @@ Payload structure
 ```json
 {
       "totalAmount": 500.00, // The amount to pay
-      "merchantId": "64b5f2fd-d97f-4797-91d7-d63fb2b5ed9c", //your orokii merchant id
-      "clientId": "4121062054", //your orokii client id
+      "clientId": "4340025143689097409",//your orokii client id
       "shippingFee": 37.00, // you cam include shipping fee if available or set it to 0
       "discount": 5.28, //you can set discount if applicable
       "tax":5, // The tax amount is in percent
@@ -72,8 +65,8 @@ Payload structure
 ```json
 {
   "totalAmount": 500.00, // The amount to pay
-      "merchantId": "64b5f2fd-d97f-4797-91d7-d63fb2b5ed9c", //your orokii merchant id
-      "clientId": "4121062054", //your orokii client id
+      
+       "clientId": "4340025143689097409",//your orokii client id
       "shippingFee": 37.00, // you cam include shipping fee if available or set it to 0
       "discount": 5.28, //you can set discount if applicable
       "tax":5, // The tax amount is in percent
@@ -91,8 +84,8 @@ Payload structure
 ```json
 {
  "totalAmount": 500.00, // The amount to pay
-      "merchantId": "64b5f2fd-d97f-4797-91d7-d63fb2b5ed9c", //your orokii merchant id
-      "clientId": "4121062054", //your orokii client id
+     
+      "clientId": "4340025143689097409",//your orokii client id
       "shippingFee": 37.00, // you cam include shipping fee if available or set it to 0
       "discount": 5.28, //you can set discount if applicable
       "tax":5, // The tax amount is in percent
@@ -115,13 +108,12 @@ a proxy endpoint as nodejs(if you are using typescript/javascript) example below
 
 // Replace with your credentials
 const UNIQUE_ID = <GENERATE YOUR UNIQUE ID>;
-const CLIENT_ID = "";
-const CLIENT_SECRET = "";
 const MERCHANT_ID = "";
-const AUTH_HEADER = "Basic " + Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString("base64");
-const BASE_URL = "https://orokii-ppg-gateway-api-730399970440.us-central1.run.app/api/v1"
+const CLIENT_AUTH = "";
+const MERCHANT_SECRET = "";
+const AUTH_HEADER = "Basic " + Buffer.from(`${CLIENT_AUTH}:${MERCHANT_SECRET}`).toString("base64");
+const BASE_URL = <PROVIDED BASEURL>
 
-// Replace with your merchant_id
 app.post("/get-token", async (req, res) => {
     const url = `${BASE_URL}/auth/${MERCHANT_ID}/get-access-token`;
 

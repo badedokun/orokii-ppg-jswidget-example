@@ -55,11 +55,10 @@ const CheckoutModal = ({ isOpen, onClose, totalAmount, onComplete }) => {
 
     const paymentData = {
       "totalAmount":parseFloat(totalAmount),
-      "merchantId": "64b5f2fd-d97f-4797-91d7-d63fb2b5ed9c",
-      "clientId": "4121062054",
-      "shippingFee": 37.00,
-      "discount": 5.28,
-      "tax":0.005,
+      "clientId": "4340025143689097409",
+      "shippingFee": 0.00,
+      "discount": 0.00,
+      "tax":0.00,
       "merchants": [
         { "merchantId": "87766786", "amount": "60", "tax": "5" },
         { "merchantId": "87766786", "amount": "60", "tax": "5" },
