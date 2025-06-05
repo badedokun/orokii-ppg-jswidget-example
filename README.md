@@ -2,6 +2,8 @@
 A repo to show JS widgets examples for Vanilla (html,css and Js), React JS and Angular 
 
 
+### Get the development widget here
+https://drive.google.com/drive/u/0/folders/1gR-_IjjGuBlPp1R07uOka7mZNMQ2OXCd
 
 ## Example guide for Angular
 
