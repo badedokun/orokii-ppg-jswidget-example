@@ -1,7 +1,7 @@
 {
   "hosting": {
     "public": "build",
-    "site":"orokiipay-e-store",
+    "site":"dev-orokiipay-e-store",
     "ignore": [
       "firebase.json",
       "**/.*",

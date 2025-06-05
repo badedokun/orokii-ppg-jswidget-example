@@ -140,7 +140,7 @@ app.post("/get-token", async (req, res) => {
 });
 ```
 
-Now call the /get-token function from your endpoints in your frontend code and call the api call function
+Now call the /get-token function from your endpoints in your frontend code and make the api call
 ```ts
 export async function getOrokiiAccessToken() {
   try {
@@ -161,7 +161,7 @@ export async function getOrokiiAccessToken() {
 
 Or you can test with ours 
 ```sh
- https://orokii-js-test-proxy.onrender.com/proxy
+https://orokii-js-test-proxy-dev.onrender.com/proxy
 
  ```
 
