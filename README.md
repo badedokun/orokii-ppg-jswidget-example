@@ -105,8 +105,6 @@ Payload structure
 You would need to call the get-access-token merchant endpoint from your backend and relay it through
 a proxy endpoint as nodejs(if you are using typescript/javascript) example below
 
-```sh
-
 
 // Replace with your credentials
 const UNIQUE_ID = <GENERATE YOUR UNIQUE ID>;
@@ -115,7 +113,7 @@ const CLIENT_AUTH = "";
 const MERCHANT_SECRET = "";
 const AUTH_HEADER = "Basic " + Buffer.from(`${CLIENT_AUTH}:${MERCHANT_SECRET}`).toString("base64");
 const BASE_URL = <PROVIDED BASEURL>
-
+```ts
 app.post("/get-token", async (req, res) => {
     const url = `${BASE_URL}/auth/${MERCHANT_ID}/get-access-token`;
 
@@ -160,12 +158,12 @@ export async function getOrokiiAccessToken() {
     return null; // Handle failure gracefully
   }
 }
+```
 
 Or you can test with ours 
 ```sh
 https://orokii-js-test-proxy-dev.onrender.com/proxy
-
- ```
+```
 
 
 Below is an example code on how you can use Renderer2 and ElememtRef to load the widget script 
@@ -290,8 +288,8 @@ Get testnet tokens from [here](https://faucets.chain.link/polygon-amoy)
 
 #### Response
 the event has the following structure
-```json 
-{
+
+```json {
   type: string,
   error: string,
   data: string|object|number
