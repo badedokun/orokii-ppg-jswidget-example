@@ -289,12 +289,14 @@ Get testnet tokens from [here](https://faucets.chain.link/polygon-amoy)
 #### Response
 the event has the following structure
 
-```json {
+```json
+{
   type: string,
   error: string,
   data: string|object|number
   message: string
-}```
+}
+```
 
 - Error 
 
