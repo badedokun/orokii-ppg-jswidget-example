@@ -36,7 +36,7 @@ Payload structure
 
 
 1. Example For single merchant purchase and a user with no saved payment option
-```json
+```ts
 {
       "totalAmount": 500.00, // The amount to pay
    "clientId": "4340025143689097409",//your orokii client id
@@ -50,7 +50,7 @@ Payload structure
     };
 ```
 2. Example For single merchant purchase and a user with saved card payment option
-```json
+```ts
 {
       "totalAmount": 500.00, // The amount to pay
       "clientId": "4340025143689097409",//your orokii client id
@@ -64,7 +64,7 @@ Payload structure
     };
 ```
 3. Example For multiple merchants and a user with saved payment option
-```json
+```ts
 {
   "totalAmount": 500.00, // The amount to pay
       
@@ -83,7 +83,7 @@ Payload structure
 ```
 
 4. Example For multiple merchants and a user with no saved payment option
-```json
+```ts
 {
  "totalAmount": 500.00, // The amount to pay
      
